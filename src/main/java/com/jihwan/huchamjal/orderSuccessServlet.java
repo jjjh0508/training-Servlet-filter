@@ -9,13 +9,14 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/orderhucamjar")
-public class OrderhucamServlet extends HttpServlet {
+@WebServlet("/member/orderSuccess")
+public class orderSuccessServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         String name = (String) session.getAttribute("name");
-
+        String addr = (String) session.getAttribute("addr");
         String chicken = req.getParameter("chicken");
         String[] toppings = req.getParameterValues("topping");
         String review = req.getParameter("chicken");
@@ -39,13 +40,16 @@ public class OrderhucamServlet extends HttpServlet {
         out.print("<head>");
         out.print("</head>");
         out.print("<body>");
-        out.println("<h3>"+name+"님 주문내역\n");
+        out.print("<h3>"+name+"님 주문내역\n");
         out.print("<br/>");
-        out.println("주문메뉴 "+chicken+"\n 주문 토핑\n");
+        out.print("주문메뉴 "+chicken);
         out.print("<br/>");
+        out.print("토핑: ");
         out.print(" "+sb);
         out.print("<br/>");
-        out.println(" 리뷰 이벤트"+review+"</h3>\n");
+        out.print("배달지 :"+addr);
+        out.print("<br/>");
+        out.print(" 리뷰 이벤트 : "+review+"</h3>\n");
         out.print("<br/>");
         out.print("</body>");
         out.print("</html>");
@@ -54,4 +58,5 @@ public class OrderhucamServlet extends HttpServlet {
         out.close();
 
     }
+
 }

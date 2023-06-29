@@ -11,7 +11,7 @@
     
     <servlet-mapping>
         <servlet-name>orderhucamapping</servlet-name>
-        <url-pattern>/orderhucam</url-pattern>
+        <url-pattern>/member/order</url-pattern>
     </servlet-mapping>
 
 

@@ -14,6 +14,7 @@ public class MemberServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
         String pass = req.getParameter("password");
         String tel = req.getParameter("tel");
@@ -21,13 +22,18 @@ public class MemberServlet extends HttpServlet {
 
         System.out.println("암호화된 비밀번호"+pass);
         HttpSession session = req.getSession();
-        System.out.println(session.getId());
         session.setAttribute("name", name);
         session.setAttribute("pass", pass);
         session.setAttribute("tel", tel);
         session.setAttribute("addr", addr);
 
-        resp.sendRedirect("order");
+        resp.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = resp.getWriter();
+        out.println(name+"님 환영합니다.\n");
+        out.println();
+        out.println("<br><a href=/member/order>주문하기</a>");
+        out.flush();
+        out.close();
 
     }
 }
