@@ -29,7 +29,7 @@ public class EncodingFilter implements Filter {
 
         if ("POST".equals(hrequest.getMethod())) {
             request.setCharacterEncoding(encodingType);
-            System.out.println("됐나?");
+            System.out.println("인코딩 완료");
 
         }
         chain.doFilter(request, response);
