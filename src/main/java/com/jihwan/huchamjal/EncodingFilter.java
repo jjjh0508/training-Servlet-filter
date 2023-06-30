@@ -14,7 +14,7 @@ public class EncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         encodingType = filterConfig.getInitParameter("encoding-type");
-        System.out.println("encoding 초기화");
+        System.out.println("encoding 초기화 : " + encodingType);
     }
 
     @Override
@@ -25,10 +25,13 @@ public class EncodingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest hrequest = (HttpServletRequest) request;
-        if ("post".equals(hrequest.getMethod())) {
+        System.out.println(hrequest.getMethod());
+
+        if ("POST".equals(hrequest.getMethod())) {
             request.setCharacterEncoding(encodingType);
+            System.out.println("됐나?");
 
         }
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 }
